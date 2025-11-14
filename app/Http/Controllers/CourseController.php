@@ -19,6 +19,7 @@ class CourseController extends Controller
         return Course::create([
             'title' => $request->title,
             'description' => $request->description,
+            'price' => $request->price, 
             'instructor_id' => auth()->id(),
             'category_id' => $request->category_id,
 

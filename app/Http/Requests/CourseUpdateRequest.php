@@ -9,9 +9,14 @@ class CourseUpdateRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+     public function authorize(): bool
     {
-        return false;
+        $course = $this->route('course');
+
+        return $course && (
+            auth()->user()->id === $course->instructor_id
+            || auth()->user()->role === 'admin'
+        );
     }
 
     /**

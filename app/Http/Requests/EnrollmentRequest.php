@@ -11,7 +11,7 @@ class EnrollmentRequest extends FormRequest
      */
      public function authorize()
     {
-        return auth()->user()->profile->role === 'student';
+        return auth()->user()->role === 'student';
     }
 
     /**

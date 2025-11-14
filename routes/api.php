@@ -28,20 +28,16 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
+    Route::get('/courses', [CourseController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
     // Categories - Admin only
     Route::middleware(['role:admin'])->group(function () {
-        Route::get('/categories', [CategoryController::class, 'index']);
-        Route::post('/categories', [CategoryController::class, 'store']);
-        Route::get('/categories/{id}', [CategoryController::class, 'show']);
-        Route::put('/categories/{id}', [CategoryController::class, 'update']);
-        Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+        Route::apiResource('/categories',CategoryController::class);
     });
 
     // Courses
-    Route::get('/courses', [CourseController::class, 'index']);
     Route::post('/courses', [CourseController::class, 'store'])->middleware('role:admin,instructor');
     Route::get('/courses/{id}', [CourseController::class, 'show']);
     Route::put('/courses/{id}', [CourseController::class, 'update'])->middleware('role:admin,instructor');

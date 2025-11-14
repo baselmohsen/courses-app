@@ -11,8 +11,8 @@ class CourseStoreRequest extends FormRequest
      */
    public function authorize()
     {
-        return auth()->user()->profile->role === 'instructor'
-            || auth()->user()->profile->role === 'admin';
+        return auth()->user()->role === 'instructor'
+            || auth()->user()->role === 'admin';
     }
 
     /**

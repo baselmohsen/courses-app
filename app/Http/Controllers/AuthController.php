@@ -26,7 +26,6 @@ class AuthController extends Controller
         // Create profile
         Profile::create([
             'user_id' => $user->id,
-            'role' => $request->role
         ]);
 
         // Create token

@@ -10,9 +10,14 @@ class LessonStoreRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
-    {
-        return false;
-    }
+        {
+
+            return  
+                auth()->user()->role === 'instructor'
+                || auth()->user()->role === 'admin'
+            ;
+        }
+
 
     /**
      * Get the validation rules that apply to the request.
